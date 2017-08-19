@@ -21,7 +21,7 @@ def verify(request):
 
     a_list.sort()
     sorted_str = ''.join(i for i in a_list)
-    local_signature = hashlib.sha1(sorted_str).hexdigest()
+    local_signature = hashlib.sha1(sorted_str.encode()).hexdigest()
     logger.info('计算出来的 signature: %s', local_signature)
     remote_signature = request.GET.get('signature')
     logger.info('传过来的 signature: %s', remote_signature)
