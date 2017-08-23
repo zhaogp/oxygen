@@ -1,6 +1,12 @@
+from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Question
 
-def index(index):
-    return HttpResponse('这是选举应用的首页')
+def index(request):
+    all_questions = Question.objects.all()
+    context = {'all_questions': all_questions}
+    return render(request, 'polls/index.html', context)
 
+def detail(request, question_id):
+    pass

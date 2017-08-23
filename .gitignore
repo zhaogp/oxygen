@@ -106,3 +106,4 @@ db.sqlite3
 .idea/
 logs/
 start.sh
+shutdown.sh

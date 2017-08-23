@@ -1,0 +1,9 @@
+{% if all_questions %}
+	<ul>
+		{% for question in all_questions %}
+			<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>没有问题要显示！</p>
+{% endif %}
