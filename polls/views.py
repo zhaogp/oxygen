@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from .models import Question
 
@@ -9,4 +9,9 @@ def index(request):
     return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):
-    pass
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404('不存在该问题')
+    return render(request, 'polls/detail.html', {'question': question})
+    
