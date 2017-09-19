@@ -1,7 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<h1>待投票的问题</h1>
 {% if all_questions %}
 	<ul>
 		{% for question in all_questions %}
-			<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+			<li><a href="{% url 'polls:detail' question.id %}">
+				{{ question.id }}: {{ question.question_text }}
+			</a></li>
 		{% endfor %}
 	</ul>
 {% else %}
