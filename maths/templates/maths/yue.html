@@ -1,8 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'maths/style.css' %}" />
+
 <form action="{% url 'maths:yue' %}" method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="calculate" />
 </form>
+
 <p>
 	{% if y %}
 		result: {{ y }}
