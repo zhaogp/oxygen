@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.cache import cache
 import logging
 
 from .forms import YueForm
@@ -28,7 +29,6 @@ def yue(request):
                 m = x % y
             
             logger.info('result: %d' % y) 
-            # return render(request, 'maths/yue.html', {'y': y})
     else:
         form = YueForm()
         y = None
