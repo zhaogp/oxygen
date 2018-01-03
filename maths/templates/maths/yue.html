@@ -1,17 +1,18 @@
 {% load static %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'maths/style.css' %}" />
-
 <form action="{% url 'maths:yue' %}" method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<input type="submit" value="calculate" />
+	<button type="submit" class="btn btn-outline-primary btn-lg">calculate</button>
 </form>
-
-<p>
-	{% if y %}
-		result: {{ y }}
-	{% else %}
-		result: 
-	{% endif %}
-</p>
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">result</h5>
+		<p class="card-text">
+			{% if y %}
+				{{ y }}
+			{% endif %}
+		</p>
+	</div>
+</div>

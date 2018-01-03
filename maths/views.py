@@ -33,4 +33,4 @@ def yue(request):
         form = YueForm()
         y = None
     
-    return render(request,'maths/yue.html', {'form': form, 'y': y})
+    return render(request,'maths/yue.html', {'form': form, 'y': y, 'l': [12, 2.9, 890]})

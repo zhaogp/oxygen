@@ -1,0 +1,17 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'maths/style.css' %}" />
+<p>
+	{% if y %}
+		result: {{ y }}
+	{% else %}
+		result: 
+	{% endif %}
+</p>
+
+<ul class="list-group">
+	{% for i in l %}
+		<li class="list-group-item">{{ i }}</li>
+	{% endfor %}
+</ul>
