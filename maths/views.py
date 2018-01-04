@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.cache import cache
 import logging
+from django.http import HttpResponse
 
 from .forms import YueForm
 
@@ -34,3 +35,6 @@ def yue(request):
         y = None
     
     return render(request,'maths/yue.html', {'form': form, 'y': y, 'l': [12, 2.9, 890]})
+
+def stack(request):
+    return HttpResponse('hello')

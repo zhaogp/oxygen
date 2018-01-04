@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['116.196.80.75', 'jdu4e00u53f7']
 # Application definition
 
 INSTALLED_APPS = [
+    'oxygen.apps.OxygenConfig',
     'maths.apps.MathsConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
