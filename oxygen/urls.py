@@ -19,6 +19,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^login/$', views.login, name='login'),
+    # url(r'^join/$', views.login, name='register'),
     url(r'^maths/', include('maths.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^weixin/', include('weixin.urls')),
