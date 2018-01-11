@@ -1,28 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import logging
 from .forms import LoginForm
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 
 logger = logging.getLogger(__name__)
 
 def index(request):
-    logger.info('Enter project index view') 
+    logger.debug('Enter index view') 
     return render(request, 'oxygen/index.html')
 
 def login(request):
-    logger.info('Enter login view')
+    logger.debug('Enter login view')
     if request.method == 'POST':
+        logger.debug('post request')
         form = LoginForm(request.POST)
         if form.is_valid():
             logger.info(form.cleaned_data)
+            logger.info('form is valid')
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            logger.info('username: %s, password: %s' % (username, password)) 
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                logger.info('%s login' % username)
+                login(request, user)
+                return redirect('oxygen.index')
+            else:
+                logger.error('Incorrect username or password.')
+                messages.add_message(request, messages.ERROR, 'Incorrect username or password.')
+                return render(
+                    request, 
+                    'oxygen/login.html', 
+                    {
+                        'form': form, 
+                        'error_messages': messages.get_messages(request)
+                    }
+                )
+                
     else:
-        form = LoginForm()
-    
-    return render(request,'oxygen/login.html', {'form': form})
+        logger.info('return unbound form')
+        return render(request,'oxygen/login.html', {'form': LoginForm()})
 
 def register(request):
     logger.info('Enter register view')

@@ -2,12 +2,18 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
 
+{% if error_messages %}
+	{% for message in error_messages %}
+		<strong>{{ message }}</strong>
+	{% endfor %}
+{% endif %}
+
 <div class="container">
 	<div id="login" class="card border-light mb-3" style="width: 18rem;">
 		<!--<div class="card-header">EdPro</div>-->
 		<div class="card-body">
 			<h3 class="card-title">Sign in to EdPro</h3>
-			<form action="{% url 'index' %}" method="post">
+			<form action="{% url 'login' %}" method="post">
 				{% csrf_token %}
 				<div class="fieldWrapper">
 					<!--{{ form.username.errors }}-->
