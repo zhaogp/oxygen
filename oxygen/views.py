@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 import logging
 from .forms import LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 from django.contrib import messages
 
 
@@ -25,8 +26,8 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 logger.info('%s login' % username)
-                login(request, user)
-                return redirect('oxygen.index')
+                auth_login(request, user)
+                return redirect('index')  # redirect to home page
             else:
                 logger.error('Incorrect username or password.')
                 messages.add_message(request, messages.ERROR, 'Incorrect username or password.')
