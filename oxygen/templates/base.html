@@ -1,0 +1,54 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+	<script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<title>{% block title %}EdPro{% endblock%}</title>
+</head>
+
+<body>
+	<div id="header">
+	{% block header %}
+		<nav class="navbar navbar-inverse navbar-static-top bg-dark" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand text-light"
+					href="{% url 'index' %}">
+					EdPro
+				</a>
+			</div>
+			<a class="nav-item nav-link text-light" href="{% url 'maths:index' %}">Maths</a>
+			<a class="nav-item nav-link text-light" href="#">Python</a>
+			<a class="nav-item nav-link text-light" href="#">Java</a>
+
+		<ul class="nav navbar-nav navbar-right">
+			{% if user.is_authenticated %}
+				<div class="nav-item nav-link text-light">
+					{% trans "Logged in" %}: {{ user.username }}
+				</div>
+				<a class="nav-item nav-link text-light 
+					"href="{% url 'logout' %}">{% trans "Log out" %}</a> |
+			{% else %} 
+				<a class="nav-item nav-link text-light "href="{% url 'login' %}">
+					{% trans "Log in" %}
+			</a> {% endif %}
+		</ul>
+		</nav>
+	{% endblock %}
+	</div>
+	
+	<div id="content">
+	{% block content %}{% endblock %}
+	</div>
+
+	<div id="footer">
+	{% block footer %}
+		<hr />
+	{% endblock %}
+	</div>
+</body>
+
+</html>

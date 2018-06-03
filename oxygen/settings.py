@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['116.196.80.75', 'jdu4e00u53f7']
 
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 # Application definition
 
@@ -143,7 +145,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'oxygen.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/oxygen.log'),
             'formatter': 'verbose'
         },
     },
